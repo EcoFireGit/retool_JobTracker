@@ -1,0 +1,1 @@
+return ['High','Medium','Low']

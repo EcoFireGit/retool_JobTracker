@@ -1,0 +1,1 @@
+return  Object.fromEntries({{ table3.data }}.map(r => [r.QBO_Name,(r.QBO_Current_Value-r.QBO_Beginning_Value)/(r.QBO_Target-r.QBO_Beginning_Value) ]))

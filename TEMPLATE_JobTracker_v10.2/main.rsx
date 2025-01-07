@@ -508,7 +508,7 @@
           id="formButton5"
           submit={true}
           submitTargetId="form5"
-          text="Map Job to QPI"
+          text="Map Job to PI"
         />
       </Footer>
       <Event

@@ -31,7 +31,7 @@
       id="select23"
       data="{{ getQPINamesTransformer.value }}"
       emptyMessage="No options"
-      label="Filter by QPI"
+      label="Filter by PI"
       labelPosition="top"
       labels="{{ _.startCase(item) }}"
       overlayMaxHeight={375}
@@ -112,7 +112,7 @@
         }}
         placeholder="Select option"
         position="center"
-        size={253.125}
+        size={305.125}
         summaryAggregationMode="none"
       />
       <Column
@@ -366,7 +366,7 @@
           id="formButton8"
           submit={true}
           submitTargetId="form8"
-          text="Map QPI to QBO"
+          text="Map PI to QBO"
         />
       </Footer>
       <Event

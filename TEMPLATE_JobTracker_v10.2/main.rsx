@@ -1717,7 +1717,7 @@
               id="formButton7"
               submit={true}
               submitTargetId="form7"
-              text="Add QPI"
+              text="Add PI"
             />
           </Footer>
           <Event
@@ -1858,7 +1858,7 @@
             }}
             placeholder="Select option"
             position="center"
-            size={223.75}
+            size={334.75}
             summaryAggregationMode="none"
           />
           <Column
@@ -1878,7 +1878,7 @@
             }}
             placeholder="Select option"
             position="center"
-            size={219.515625}
+            size={348.515625}
             summaryAggregationMode="none"
           />
           <Column

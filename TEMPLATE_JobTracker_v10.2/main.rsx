@@ -1800,15 +1800,6 @@
                 { disabled: false },
               ],
             },
-            2: {
-              ordered: [
-                { id: "252da" },
-                { columnId: "d2854" },
-                { operator: "is" },
-                { value: "false" },
-                { disabled: false },
-              ],
-            },
           }}
           defaultSelectedRow={{ mode: "index", indexType: "display", index: 0 }}
           defaultSort={[

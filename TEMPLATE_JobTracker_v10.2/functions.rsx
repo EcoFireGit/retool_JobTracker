@@ -263,7 +263,7 @@
     id="deleteJob2QPIsQuery"
     actionType="delete"
     confirmationMessage={
-      'Delete mapping "{{ table5.data.find(row => row.Job_ID === table10.selectedRow.Job_Title)?.Job_Title }} <--> {{ table9.data.find(row => row.QPI_ID === table10.selectedRow.QPI_Name)?.QPI_Name }}" ?'
+      'Delete mapping "{{ table10.selectedRow.Job_Title }} <--> {{ table10.selectedRow.QPI_Name }}" ?'
     }
     filterBy={
       '[{"key":"Job_QPI_Mapping_ID","value":"{{ table10.selectedRow.Job_QPI_Mapping_ID }}","operation":"="}]'
@@ -611,7 +611,7 @@
     id="deleteQPIs2QBOsQuery"
     actionType="delete"
     confirmationMessage={
-      'Delete mapping "{{ table9.data.find(row=> row.QPI_ID === table6.selectedRow.QPI_Name)?.QPI_Name }} <--> {{ table3.data.find(row => row.QBO_ID === table6.selectedRow.QBO_Name)?.QBO_Name }}?" ?'
+      'Delete mapping "{{ table6.selectedRow.QPI_Name }} <--> {{ table6.selectedRow.QBO_Name }}"" ?'
     }
     filterBy={
       '[{"key":"QPI_QBO_Mapping_ID","value":"{{ table6.selectedRow.QPI_QBO_Mapping_ID }}","operation":"="}]'
@@ -744,12 +744,4 @@
       waitType="debounce"
     />
   </GoogleSheetsQuery>
-  <Function
-    id="getPIsTransformer"
-    funcBody={include("./lib/getPIsTransformer.js", "string")}
-  />
-  <Function
-    id="getQBOsTransformer"
-    funcBody={include("./lib/getQBOsTransformer.js", "string")}
-  />
 </GlobalFunctions>

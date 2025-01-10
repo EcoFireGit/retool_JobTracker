@@ -239,7 +239,7 @@
             position="center"
             size={93.671875}
             summaryAggregationMode="none"
-            valueOverride="{{ _.startCase(item) }}"
+            valueOverride="{{ item }}"
           />
           <Column
             id="72820"
@@ -437,33 +437,33 @@
       <Body>
         <Select
           id="select32"
-          data="{{ getUndoneJobsTransformer.value }}"
+          data="{{ getJobTitlesTransformer.value }}"
           emptyMessage="No options"
           formDataKey="Job_Title"
           label="Job to be done"
           labelCaption="Select job to map to a PI"
           labelPosition="top"
-          labels="{{ item.Job_Title }}"
+          labels="{{  item }}"
           overlayMaxHeight={375}
           placeholder="Select an option"
           required={true}
           showSelectionIndicator={true}
-          values="{{ item.Job_ID }}"
+          values="{{ item }}"
         />
         <Select
           id="select33"
-          data="{{ getPIsTransformer.value }}"
+          data="{{ getQPINamesTransformer.value }}"
           emptyMessage="No options"
           formDataKey="QPI_Name"
           label="PI name"
           labelCaption="Select PI that the job will impact"
           labelPosition="top"
-          labels="{{ item.QPI_Name }}"
+          labels="{{ item }}"
           overlayMaxHeight={375}
           placeholder="Select an option"
           required={true}
           showSelectionIndicator={true}
-          values="{{ item.QPI_ID }}"
+          values="{{ item }}"
         />
         <NumberInput
           id="numberInput27"
@@ -492,7 +492,7 @@
           showSeparators={true}
           showStepper={true}
           value="{{ 
-  table9.data.find(row => row.QPI_ID === select33.value)?.QPI_Target 
+  table9.data.find(row => row.QPI_Name === select33.value)?.QPI_Target 
 }}"
         />
         <TextInput
@@ -541,6 +541,7 @@
         <TextInput
           id="textInput18"
           formDataKey="Job_Title"
+          inputTooltip="Enter letters and numbers only"
           label="Job to be done"
           labelCaption="Envisioned outcome"
           labelPosition="top"
@@ -672,7 +673,7 @@
           formDataKey="QBO_Name"
           label="QBO name"
           labelPosition="top"
-          labels="{{ _.startCase(item) }}"
+          labels="{{ item }}"
           overlayMaxHeight={375}
           placeholder="Select an option"
           required={true}
@@ -861,7 +862,7 @@
           placeholder="Select an option"
           showSelectionIndicator={true}
           tooltipByIndex=""
-          value="1XZBmoWHSZE26I0qb72orPrIInwBdnf2fdRQHNsTgUpg"
+          value="1dxUEenl9P_XXhEufad9NIqyUg0g2cA2Agz6GNNhoeJM"
           values="{{ item.id }}"
         >
           <Event
@@ -1481,7 +1482,6 @@
             alignment="left"
             editable="true"
             format="string"
-            formatOptions={{ automaticColors: true }}
             groupAggregationMode="none"
             key="QPI_Name"
             label="PI name"
@@ -1755,7 +1755,7 @@
           emptyMessage="No options"
           label="Filter by job"
           labelPosition="top"
-          labels="{{ _.startCase(item) }}"
+          labels="{{ item }}"
           overlayMaxHeight={375}
           placeholder="Select an option"
           showClear={true}
@@ -1768,7 +1768,7 @@
           emptyMessage="No options"
           label="Filter by PI"
           labelPosition="top"
-          labels="{{ _.startCase(item) }}"
+          labels="{{ item }}"
           overlayMaxHeight={375}
           placeholder="Select an option"
           showClear={true}
@@ -1784,10 +1784,10 @@
           defaultFilters={{
             0: {
               ordered: [
-                { id: "6eb5d" },
-                { columnId: "d2854" },
-                { operator: "isFalse" },
-                { value: "" },
+                { id: "8153d" },
+                { columnId: "94824" },
+                { operator: "is" },
+                { value: "{{ select25.value }}" },
                 { disabled: false },
               ],
             },
@@ -1797,15 +1797,6 @@
                 { columnId: "dd61b" },
                 { operator: "is" },
                 { value: "{{ select26.value }}" },
-                { disabled: false },
-              ],
-            },
-            2: {
-              ordered: [
-                { id: "8153d" },
-                { columnId: "94824" },
-                { operator: "is" },
-                { value: "{{ select25.value }}" },
                 { disabled: false },
               ],
             },
@@ -1843,6 +1834,7 @@
             id="94824"
             alignment="left"
             editable="true"
+            editableOptions={{ object: {} }}
             format="tag"
             formatOptions={{ automaticColors: true }}
             groupAggregationMode="none"
@@ -1851,9 +1843,9 @@
             label="Job to be done"
             optionList={{
               mode: "mapped",
-              mappedData: "{{ getUndoneJobsTransformer.value }}",
-              valueByIndex: "{{ item.Job_ID }}",
-              labelByIndex: "{{ item.Job_Title }}",
+              mappedData: "{{ getJobTitlesTransformer.value }}",
+              valueByIndex: "{{ item }}",
+              labelByIndex: "{{ item }}",
             }}
             placeholder="Select option"
             position="center"
@@ -1871,9 +1863,9 @@
             label="PI name"
             optionList={{
               mode: "mapped",
-              mappedData: "{{ getPIsTransformer.value }}",
-              valueByIndex: "{{ item.QPI_ID }}",
-              labelByIndex: "{{ item.QPI_Name }}",
+              mappedData: "{{ getQPINamesTransformer.value }}",
+              valueByIndex: "{{ item }}",
+              labelByIndex: "{{ item }}",
             }}
             placeholder="Select option"
             position="center"
@@ -1894,7 +1886,7 @@
             size={174.8125}
             summaryAggregationMode="none"
             valueOverride="{{ 
-  table9.data.find(row => row.QPI_ID === currentSourceRow.QPI_Name)?.QPI_Target 
+  table9.data.find(row => row.QPI_Name === currentSourceRow.QPI_Name)?.QPI_Target 
 }}"
           />
           <Column
@@ -1917,6 +1909,7 @@
             id="d2854"
             alignment="left"
             editable="true"
+            editableOptions={{ object: {} }}
             format="boolean"
             groupAggregationMode="none"
             hidden="true"
@@ -1926,7 +1919,7 @@
             referenceId="jobDone"
             size={70.296875}
             summaryAggregationMode="none"
-            valueOverride="{{ table5.data.find(row => row.Job_ID === currentSourceRow.Job_Title).Job_Done }}"
+            valueOverride="{{ table5.data.find(row => row.Job_Title === currentSourceRow.Job_Title).Job_Done }}"
           />
           <Column
             id="b8dc9"

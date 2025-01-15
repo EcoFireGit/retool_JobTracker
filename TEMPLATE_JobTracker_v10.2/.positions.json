@@ -113,7 +113,15 @@
   "container13": {
     "row": 113.6,
     "height": 0.2,
-    "width": 12
+    "width": 12,
+    "stackPosition": {
+      "object": {
+        "ordinal": 0,
+        "widthType": "fixed",
+        "width": 0,
+        "height": 0
+      }
+    }
   },
   "container2": {
     "row": 10.2,

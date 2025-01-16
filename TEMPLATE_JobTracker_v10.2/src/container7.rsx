@@ -75,10 +75,10 @@
         waterfallBase={0}
         waterfallMeasures={{ array: [] }}
         waterfallMeasuresMode="source"
-        xData="{{ Object.keys(getQPICurrentPercentProgressTransformer.value) }}"
+        xData="{{ Object.values(getQPICurrentPercentProgressTransformer.value).map(r => r[0]) }}"
         xDataMode="manual"
         yAxis="y"
-        yData="{{ Object.values(getQPICurrentPercentProgressTransformer.value) }}"
+        yData="{{ Object.values(getQPICurrentPercentProgressTransformer.value).map(r => r[1]) }}"
         yDataMode="manual"
         zData="[1, 2, 3, 4, 5]"
         zDataMode="manual"
@@ -192,10 +192,10 @@
         waterfallBase={0}
         waterfallMeasures={{ array: [] }}
         waterfallMeasuresMode="source"
-        xData="{{ Object.keys(getQBOExpectedPercentProgressTransformer.value) }}"
+        xData="{{ Object.values(getQBOExpectedPercentProgressTransformer.value).map(r => r[0]) }}"
         xDataMode="manual"
         yAxis="y"
-        yData="{{ Object.values(getQBOExpectedPercentProgressTransformer.value) }}"
+        yData="{{ Object.values(getQBOExpectedPercentProgressTransformer.value).map(r => r[1]) }}"
         yDataMode="manual"
         zData="[1, 2, 3, 4, 5]"
         zDataMode="manual"
@@ -398,19 +398,9 @@
         referenceId="Job_Points"
         size={100}
         summaryAggregationMode="sum"
-        valueOverride="{{ getJobPtsTransformer.value[currentSourceRow.Job_Title] }}"
+        valueOverride="{{ getJobPtsTransformer.value[currentSourceRow.Job_ID] }}"
       />
-      <Action id="e8655" icon="bold/interface-edit-copy" label="Duplicate">
-        <Event
-          event="clickAction"
-          method="trigger"
-          params={{ ordered: [] }}
-          pluginId="duplicateDoneJobQuery"
-          type="datasource"
-          waitMs="0"
-          waitType="debounce"
-        />
-      </Action>
+      <Action id="9d8ae" icon="bold/interface-edit-pencil" label="Action 1" />
       <ToolbarButton
         id="1a"
         icon="bold/interface-text-formatting-filter-2"

@@ -263,7 +263,7 @@
     id="deleteJob2QPIsQuery"
     actionType="delete"
     confirmationMessage={
-      'Delete mapping "{{ table10.selectedRow.Job_Title }} <--> {{ table10.selectedRow.QPI_Name }}" ?'
+      'Delete mapping "{{ table5.data.find(row => row.Job_ID === table10.selectedRow.Job_Title)?.Job_Title }} <--> {{ table9.data.find(row => row.QPI_ID === table10.selectedRow.QPI_Name)?.QPI_Name }}" ?'
     }
     filterBy={
       '[{"key":"Job_QPI_Mapping_ID","value":"{{ table10.selectedRow.Job_QPI_Mapping_ID }}","operation":"="}]'
@@ -611,7 +611,7 @@
     id="deleteQPIs2QBOsQuery"
     actionType="delete"
     confirmationMessage={
-      'Delete mapping "{{ table6.selectedRow.QPI_Name }} <--> {{ table6.selectedRow.QBO_Name }}"" ?'
+      'Delete mapping "{{ table9.data.find(row=> row.QPI_ID === table6.selectedRow.QPI_Name)?.QPI_Name }} <--> {{ table3.data.find(row => row.QBO_ID === table6.selectedRow.QBO_Name)?.QBO_Name }}?" ?'
     }
     filterBy={
       '[{"key":"QPI_QBO_Mapping_ID","value":"{{ table6.selectedRow.QPI_QBO_Mapping_ID }}","operation":"="}]'
@@ -696,7 +696,6 @@
     sheetUpdate="{{ duplicateJobTransformer.value }}"
     showSuccessToaster={false}
     spreadsheetId="{{ select16.value }}"
-    transformer=""
     useRawSpreadsheetId={true}
   >
     <Event
@@ -704,6 +703,15 @@
       method="trigger"
       params={{ ordered: [] }}
       pluginId="readJobListQuery"
+      type="datasource"
+      waitMs="0"
+      waitType="debounce"
+    />
+    <Event
+      event="success"
+      method="trigger"
+      params={{ ordered: [] }}
+      pluginId="duplicateJob2QPIQuery"
       type="datasource"
       waitMs="0"
       waitType="debounce"
@@ -714,21 +722,31 @@
     funcBody={include("./lib/duplicateJobTransformer.js", "string")}
   />
   <Function
-    id="duplicateDoneJobTransformer"
-    funcBody={include("./lib/duplicateDoneJobTransformer.js", "string")}
+    id="getPIsTransformer"
+    funcBody={include("./lib/getPIsTransformer.js", "string")}
+  />
+  <Function
+    id="getQBOsTransformer"
+    funcBody={include("./lib/getQBOsTransformer.js", "string")}
+  />
+  <Function
+    id="duplicateJob2QPIMappingTransformer"
+    funcBody={include("./lib/duplicateJob2QPIMappingTransformer.js", "string")}
   />
   <GoogleSheetsQuery
-    id="duplicateDoneJobQuery"
+    id="duplicateJob2QPIQuery"
     actionType="append"
-    confirmationMessage={'Duplicate Job "{{ table7.selectedRow.Job_Title }}"?'}
+    confirmationMessage={
+      'Duplicate Job 2 PI mapping "{{ table5.selectedRow.Job_Title }}"?'
+    }
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     requireConfirmation={true}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
     runWhenModelUpdates={false}
-    sheetName="JobList"
-    sheetUpdate="{{ duplicateDoneJobTransformer.value }}"
+    sheetName="Job2QPIs"
+    sheetUpdate="{{ duplicateJob2QPIMappingTransformer.value }}"
     showSuccessToaster={false}
     spreadsheetId="{{ select16.value }}"
     transformer=""
@@ -738,10 +756,13 @@
       event="success"
       method="trigger"
       params={{ ordered: [] }}
-      pluginId="readJobListQuery"
+      pluginId="readJob2QPIsQuery"
       type="datasource"
       waitMs="0"
       waitType="debounce"
     />
   </GoogleSheetsQuery>
+  <State id="JobToBeDuplicatedIDVariable" />
+  <State id="DuplicatedJobIDVariable" />
+  <State id="JobToBeDeletedIDVariable" />
 </GlobalFunctions>

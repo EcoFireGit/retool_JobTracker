@@ -16,29 +16,29 @@
   <View id="59e76" viewKey="View 1">
     <Select
       id="select24"
-      data="{{ getQBONamesTransformer.value }}"
+      data="{{ getQBOsTransformer.value }}"
       emptyMessage="No options"
       label="Filter by QBO"
       labelPosition="top"
-      labels="{{ item }}"
+      labels="{{ item.QBO_Name }}"
       overlayMaxHeight={375}
       placeholder="Select an option"
       showClear={true}
       showSelectionIndicator={true}
-      values="{{ item }}"
+      values="{{ item.QBO_ID }}"
     />
     <Select
       id="select23"
-      data="{{ getQPINamesTransformer.value }}"
+      data="{{ getPIsTransformer.value }}"
       emptyMessage="No options"
       label="Filter by PI"
       labelPosition="top"
-      labels="{{ item }}"
+      labels="{{ item.QPI_Name }}"
       overlayMaxHeight={375}
       placeholder="Select an option"
       showClear={true}
       showSelectionIndicator={true}
-      values="{{ item }}"
+      values="{{ item.QPI_ID }}"
     />
     <Table
       id="table6"
@@ -106,9 +106,15 @@
         label="PI name"
         optionList={{
           mode: "mapped",
-          mappedData: "{{ getQPINamesTransformer.value }}",
-          valueByIndex: "{{ item }}",
-          labelByIndex: "{{ item }}",
+          mappedData: "{{ getPIsTransformer.value }}",
+          valueByIndex: "{{ item.QPI_ID }}",
+          labelByIndex: "{{ item.QPI_Name }}",
+          captionByIndex: "",
+          colorByIndex: "",
+          textColorByIndex: "",
+          iconByIndex: "",
+          fallbackTextByIndex: "",
+          hiddenByIndex: "",
         }}
         placeholder="Select option"
         position="center"
@@ -130,7 +136,7 @@
         size={75.8125}
         summaryAggregationMode="none"
         valueOverride="{{ 
-  table9.data.find(row => row.QPI_Name === currentSourceRow.QPI_Name)?.QPI_Target 
+  table9.data.find(row => row.QPI_ID === currentSourceRow.QPI_Name)?.QPI_Target 
 }}"
       />
       <Column
@@ -144,9 +150,9 @@
         label="QBO name"
         optionList={{
           mode: "mapped",
-          mappedData: "{{ getQBONamesTransformer.value }}",
-          valueByIndex: "{{ item }}",
-          labelByIndex: "{{ item }}",
+          mappedData: "{{ getQBOsTransformer.value }}",
+          valueByIndex: "{{ item.QBO_ID }}",
+          labelByIndex: "{{ item.QBO_Name }}",
         }}
         placeholder="Select option"
         position="center"
@@ -167,7 +173,7 @@
         size={99.96875}
         summaryAggregationMode="none"
         valueOverride="{{ 
-  table3.data.find(row => row.QBO_Name === currentSourceRow.QBO_Name)?.QBO_Target 
+  table3.data.find(row => row.QBO_ID === currentSourceRow.QBO_Name)?.QBO_Target 
 }}"
       />
       <Column
@@ -182,7 +188,7 @@
         label="QBO impact"
         placeholder="Enter value"
         position="center"
-        size={83.875}
+        size={130.875}
         summaryAggregationMode="none"
         tooltip="Expected QBO impact"
       />
@@ -285,17 +291,17 @@
       <Body>
         <Select
           id="select30"
-          data="{{ getQPINamesTransformer.value }}"
+          data="{{ getPIsTransformer.value }}"
           emptyMessage="No options"
           formDataKey="QPI_Name"
           label="PI name"
           labelPosition="top"
-          labels="{{ item }}"
+          labels="{{ item.QPI_Name }}"
           overlayMaxHeight={375}
           placeholder="Select an option"
           required={true}
           showSelectionIndicator={true}
-          values="{{ item }}"
+          values="{{ item.QPI_ID }}"
         />
         <NumberInput
           id="numberInput23"
@@ -309,21 +315,21 @@
           readOnly="true"
           showSeparators={true}
           showStepper={true}
-          value="{{ table9.data.find(row => row.QPI_Name === select30.value)?.QPI_Target }}"
+          value="{{ table9.data.find(row => row.QPI_ID === select30.value)?.QPI_Target }}"
         />
         <Select
           id="select31"
-          data="{{ getQBONamesTransformer.value }}"
+          data="{{ getQBOsTransformer.value }}"
           emptyMessage="No options"
           formDataKey="QBO_Name"
           label="QBO name"
           labelPosition="top"
-          labels="{{ item }}"
+          labels="{{ item.QBO_Name }}"
           overlayMaxHeight={375}
           placeholder="Select an option"
           required={true}
           showSelectionIndicator={true}
-          values="{{ item }}"
+          values="{{ item.QBO_ID }}"
         />
         <NumberInput
           id="numberInput24"
@@ -337,7 +343,7 @@
           readOnly="true"
           showSeparators={true}
           showStepper={true}
-          value="{{ table3.data.find(row => row.QBO_Name === select31.value)?.QBO_Target }}"
+          value="{{ table3.data.find(row => row.QBO_ID === select31.value)?.QBO_Target }}"
         />
         <NumberInput
           id="numberInput25"
@@ -380,4 +386,13 @@
       />
     </Form>
   </View>
+  <Event
+    event="click"
+    method="trigger"
+    params={{ ordered: [] }}
+    pluginId="addQPIsQ2QBOsQuery"
+    type="datasource"
+    waitMs="0"
+    waitType="debounce"
+  />
 </Container>

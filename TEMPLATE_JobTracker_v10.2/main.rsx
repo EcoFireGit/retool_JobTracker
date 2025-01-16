@@ -114,6 +114,7 @@
           defaultSort={[
             { object: { columnId: "c2953", direction: "asc" } },
             { object: { columnId: "72820", direction: "desc" } },
+            { object: { columnId: "be82a", direction: "asc" } },
           ]}
           dynamicRowHeights={true}
           emptyMessage="No rows found"
@@ -239,7 +240,7 @@
             position="center"
             size={93.671875}
             summaryAggregationMode="none"
-            valueOverride="{{ item }}"
+            valueOverride="{{ _.startCase(item) }}"
           />
           <Column
             id="72820"
@@ -255,7 +256,7 @@
             size={85.59375}
             summaryAggregationMode="none"
             tooltip="How much does this job contribute towards realizing your mission?"
-            valueOverride="{{ getJobPtsTransformer.value[currentSourceRow.Job_Title] }}"
+            valueOverride="{{ getJobPtsTransformer.value[currentSourceRow.Job_ID] }}"
           />
           <Column
             id="c2953"
@@ -334,6 +335,15 @@
           <Action id="ac78a" icon="bold/interface-delete-bin-2" label="Delete">
             <Event
               event="clickAction"
+              method="setValue"
+              params={{ ordered: [{ value: "{{ currentSourceRow.Job_ID }}" }] }}
+              pluginId="JobToBeDeletedIDVariable"
+              type="state"
+              waitMs="0"
+              waitType="debounce"
+            />
+            <Event
+              event="clickAction"
               method="trigger"
               params={{ ordered: [] }}
               pluginId="deleteJobQuery"
@@ -345,11 +355,29 @@
           <Action id="83650" icon="bold/interface-edit-copy" label="Duplicate">
             <Event
               event="clickAction"
+              method="setValue"
+              params={{ ordered: [{ value: "{{ currentSourceRow.Job_ID}}" }] }}
+              pluginId="JobToBeDuplicatedIDVariable"
+              type="state"
+              waitMs="0"
+              waitType="debounce"
+            />
+            <Event
+              event="clickAction"
+              method="setValue"
+              params={{ ordered: [{ value: "{{  uuid.v4() }}" }] }}
+              pluginId="DuplicatedJobIDVariable"
+              type="state"
+              waitMs="0"
+              waitType="debounce"
+            />
+            <Event
+              event="clickAction"
               method="trigger"
               params={{ ordered: [] }}
               pluginId="duplicateJobQuery"
               type="datasource"
-              waitMs="0"
+              waitMs="100"
               waitType="debounce"
             />
           </Action>
@@ -437,33 +465,33 @@
       <Body>
         <Select
           id="select32"
-          data="{{ getJobTitlesTransformer.value }}"
+          data="{{ getUndoneJobsTransformer.value }}"
           emptyMessage="No options"
           formDataKey="Job_Title"
           label="Job to be done"
           labelCaption="Select job to map to a PI"
           labelPosition="top"
-          labels="{{  item }}"
+          labels="{{ item.Job_Title }}"
           overlayMaxHeight={375}
           placeholder="Select an option"
           required={true}
           showSelectionIndicator={true}
-          values="{{ item }}"
+          values="{{ item.Job_ID }}"
         />
         <Select
           id="select33"
-          data="{{ getQPINamesTransformer.value }}"
+          data="{{ getPIsTransformer.value }}"
           emptyMessage="No options"
           formDataKey="QPI_Name"
           label="PI name"
           labelCaption="Select PI that the job will impact"
           labelPosition="top"
-          labels="{{ item }}"
+          labels="{{ item.QPI_Name }}"
           overlayMaxHeight={375}
           placeholder="Select an option"
           required={true}
           showSelectionIndicator={true}
-          values="{{ item }}"
+          values="{{ item.QPI_ID }}"
         />
         <NumberInput
           id="numberInput27"
@@ -492,7 +520,7 @@
           showSeparators={true}
           showStepper={true}
           value="{{ 
-  table9.data.find(row => row.QPI_Name === select33.value)?.QPI_Target 
+  table9.data.find(row => row.QPI_ID === select33.value)?.QPI_Target 
 }}"
         />
         <TextInput
@@ -541,7 +569,6 @@
         <TextInput
           id="textInput18"
           formDataKey="Job_Title"
-          inputTooltip="Enter letters and numbers only"
           label="Job to be done"
           labelCaption="Envisioned outcome"
           labelPosition="top"
@@ -673,7 +700,7 @@
           formDataKey="QBO_Name"
           label="QBO name"
           labelPosition="top"
-          labels="{{ item }}"
+          labels="{{ _.startCase(item) }}"
           overlayMaxHeight={375}
           placeholder="Select an option"
           required={true}
@@ -862,7 +889,7 @@
           placeholder="Select an option"
           showSelectionIndicator={true}
           tooltipByIndex=""
-          value="1dxUEenl9P_XXhEufad9NIqyUg0g2cA2Agz6GNNhoeJM"
+          value="1XZBmoWHSZE26I0qb72orPrIInwBdnf2fdRQHNsTgUpg"
           values="{{ item.id }}"
         >
           <Event
@@ -1482,6 +1509,7 @@
             alignment="left"
             editable="true"
             format="string"
+            formatOptions={{ automaticColors: true }}
             groupAggregationMode="none"
             key="QPI_Name"
             label="PI name"
@@ -1751,29 +1779,29 @@
       <View id="59e76" viewKey="View 1">
         <Select
           id="select25"
-          data="{{ getJobTitlesTransformer.value }}"
+          data="{{ getUndoneJobsTransformer.value }}"
           emptyMessage="No options"
           label="Filter by job"
           labelPosition="top"
-          labels="{{ item }}"
+          labels="{{ item.Job_Title }}"
           overlayMaxHeight={375}
           placeholder="Select an option"
           showClear={true}
           showSelectionIndicator={true}
-          values="{{ item }}"
+          values="{{ item.Job_ID }}"
         />
         <Select
           id="select26"
-          data="{{ getQPINamesTransformer.value }}"
+          data="{{ getPIsTransformer.value }}"
           emptyMessage="No options"
           label="Filter by PI"
           labelPosition="top"
-          labels="{{ item }}"
+          labels="{{ item.QPI_Name }}"
           overlayMaxHeight={375}
           placeholder="Select an option"
           showClear={true}
           showSelectionIndicator={true}
-          values="{{ item }}"
+          values="{{ item.QPI_ID }}"
         />
         <Table
           id="table10"
@@ -1784,6 +1812,15 @@
           defaultFilters={{
             0: {
               ordered: [
+                { id: "a2430" },
+                { columnId: "dd61b" },
+                { operator: "is" },
+                { value: "{{ select26.value }}" },
+                { disabled: false },
+              ],
+            },
+            1: {
+              ordered: [
                 { id: "8153d" },
                 { columnId: "94824" },
                 { operator: "is" },
@@ -1791,12 +1828,12 @@
                 { disabled: false },
               ],
             },
-            1: {
+            2: {
               ordered: [
-                { id: "a2430" },
-                { columnId: "dd61b" },
-                { operator: "is" },
-                { value: "{{ select26.value }}" },
+                { id: "4573d" },
+                { columnId: "d2854" },
+                { operator: "isFalse" },
+                { value: "" },
                 { disabled: false },
               ],
             },
@@ -1834,7 +1871,6 @@
             id="94824"
             alignment="left"
             editable="true"
-            editableOptions={{ object: {} }}
             format="tag"
             formatOptions={{ automaticColors: true }}
             groupAggregationMode="none"
@@ -1843,9 +1879,9 @@
             label="Job to be done"
             optionList={{
               mode: "mapped",
-              mappedData: "{{ getJobTitlesTransformer.value }}",
-              valueByIndex: "{{ item }}",
-              labelByIndex: "{{ item }}",
+              mappedData: "{{ getUndoneJobsTransformer.value }}",
+              valueByIndex: "{{ item.Job_ID }}",
+              labelByIndex: "{{ item.Job_Title }}",
             }}
             placeholder="Select option"
             position="center"
@@ -1863,9 +1899,9 @@
             label="PI name"
             optionList={{
               mode: "mapped",
-              mappedData: "{{ getQPINamesTransformer.value }}",
-              valueByIndex: "{{ item }}",
-              labelByIndex: "{{ item }}",
+              mappedData: "{{ getPIsTransformer.value }}",
+              valueByIndex: "{{ item.QPI_ID }}",
+              labelByIndex: "{{ item.QPI_Name }}",
             }}
             placeholder="Select option"
             position="center"
@@ -1886,7 +1922,7 @@
             size={174.8125}
             summaryAggregationMode="none"
             valueOverride="{{ 
-  table9.data.find(row => row.QPI_Name === currentSourceRow.QPI_Name)?.QPI_Target 
+  table9.data.find(row => row.QPI_ID === currentSourceRow.QPI_Name)?.QPI_Target 
 }}"
           />
           <Column
@@ -1909,7 +1945,6 @@
             id="d2854"
             alignment="left"
             editable="true"
-            editableOptions={{ object: {} }}
             format="boolean"
             groupAggregationMode="none"
             hidden="true"
@@ -1919,7 +1954,7 @@
             referenceId="jobDone"
             size={70.296875}
             summaryAggregationMode="none"
-            valueOverride="{{ table5.data.find(row => row.Job_Title === currentSourceRow.Job_Title).Job_Done }}"
+            valueOverride="{{ table5.data.find(row => row.Job_ID === currentSourceRow.Job_Title).Job_Done }}"
           />
           <Column
             id="b8dc9"

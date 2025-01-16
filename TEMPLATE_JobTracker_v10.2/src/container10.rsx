@@ -29,7 +29,7 @@
       emptyMessage="No options"
       label="Owner (next step)"
       labelPosition="top"
-      labels="{{ item }}"
+      labels="{{ _.startCase(item) }}"
       overlayMaxHeight={375}
       placeholder="Select an option"
       showClear={true}

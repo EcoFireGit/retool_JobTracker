@@ -1,0 +1,11 @@
+{
+  "toolscriptVersion": "1.0.0",
+  "version": "43.0.9",
+  "pageUuid": "56f80450-c951-11ef-8f88-1fd1c41297f1",
+  "appTemplate": {
+    "preloadedAppJavaScript": "window.parseStringToNumber = function(str) {\n  // Remove currency symbols, commas, and spaces\n  let cleanedStr = str.replace(/[$£€¥,\\s]/g, '');\n  \n  // Check if it's a percentage\n  if (cleanedStr.includes('%')) {\n    cleanedStr = cleanedStr.replace('%', '');\n    return parseFloat(cleanedStr) / 100;\n  }\n  \n  // Parse the cleaned string\n  return parseFloat(cleanedStr);\n};\n\nwindow.createObjectFromArrays = function(keys, values) {\n  return Object.fromEntries(keys.map((key, index) => [key, values[index]]));\n};",
+    "isFetching": true,
+    "version": "3.138.0",
+    "experimentalDataTabEnabled": true
+  }
+}

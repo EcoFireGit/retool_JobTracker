@@ -1,0 +1,1 @@
+return [...new Set({{ table3.data }}.map(item => item.QBO_Name))];

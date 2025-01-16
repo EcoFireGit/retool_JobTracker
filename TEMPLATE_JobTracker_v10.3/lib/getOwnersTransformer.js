@@ -1,0 +1,1 @@
+return [...new Set({{ table8.data }}.map(item => item.Owner_Name))];

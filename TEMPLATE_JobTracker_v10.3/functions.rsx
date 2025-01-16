@@ -764,5 +764,4 @@
   </GoogleSheetsQuery>
   <State id="JobToBeDuplicatedIDVariable" />
   <State id="DuplicatedJobIDVariable" />
-  <State id="JobToBeDeletedIDVariable" />
 </GlobalFunctions>

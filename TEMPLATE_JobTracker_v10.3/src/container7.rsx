@@ -321,9 +321,10 @@
       <Column
         id="2aad1"
         alignment="left"
+        editable="true"
         format="string"
         groupAggregationMode="none"
-        hidden="true"
+        hidden="false"
         key="Next_Actionable_Step"
         label="Next actionable step"
         placeholder="Enter value"

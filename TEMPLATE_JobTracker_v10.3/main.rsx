@@ -332,26 +332,6 @@
             tooltip="For next step"
             valueOverride="{{ _.startCase(item) }}"
           />
-          <Action id="ac78a" icon="bold/interface-delete-bin-2" label="Delete">
-            <Event
-              event="clickAction"
-              method="setValue"
-              params={{ ordered: [{ value: "{{ currentSourceRow.Job_ID }}" }] }}
-              pluginId="JobToBeDeletedIDVariable"
-              type="state"
-              waitMs="0"
-              waitType="debounce"
-            />
-            <Event
-              event="clickAction"
-              method="trigger"
-              params={{ ordered: [] }}
-              pluginId="deleteJobQuery"
-              type="datasource"
-              waitMs="0"
-              waitType="debounce"
-            />
-          </Action>
           <Action id="83650" icon="bold/interface-edit-copy" label="Duplicate">
             <Event
               event="clickAction"
@@ -378,6 +358,17 @@
               pluginId="duplicateJobQuery"
               type="datasource"
               waitMs="100"
+              waitType="debounce"
+            />
+          </Action>
+          <Action id="ac78a" icon="bold/interface-delete-bin-2" label="Delete">
+            <Event
+              event="clickAction"
+              method="trigger"
+              params={{ ordered: [] }}
+              pluginId="deleteJobQuery"
+              type="datasource"
+              waitMs="0"
               waitType="debounce"
             />
           </Action>

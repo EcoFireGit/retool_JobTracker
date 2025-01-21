@@ -386,13 +386,4 @@
       />
     </Form>
   </View>
-  <Event
-    event="click"
-    method="trigger"
-    params={{ ordered: [] }}
-    pluginId="addQPIsQ2QBOsQuery"
-    type="datasource"
-    waitMs="0"
-    waitType="debounce"
-  />
 </Container>

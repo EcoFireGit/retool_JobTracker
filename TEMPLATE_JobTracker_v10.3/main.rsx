@@ -1092,7 +1092,6 @@
             id="1df41"
             alignment="left"
             editable="true"
-            editableOptions={{ object: {} }}
             format="string"
             formatOptions={{ automaticColors: true }}
             groupAggregationMode="none"
@@ -1102,7 +1101,6 @@
             position="center"
             size={100}
             summaryAggregationMode="none"
-            valueOverride="{{ _.startCase(item) }}"
           />
           <Column
             id="aedb4"
@@ -1966,7 +1964,7 @@
             id="575a0"
             alignment="left"
             editable="true"
-            format="string"
+            format="multilineString"
             groupAggregationMode="none"
             key="Job2QPI_Notes"
             label="Notes"

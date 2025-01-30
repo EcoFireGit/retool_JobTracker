@@ -1,1 +1,0 @@
-return {{ table5.data }}.filter(item => item.Job_Done);

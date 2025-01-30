@@ -607,19 +607,6 @@
           labelCaption="Date on which you intend to do the next step"
           labelPosition="top"
         />
-        <Select
-          id="select11"
-          data="{{ returnHMLTransformer.value }}"
-          emptyMessage="No options"
-          formDataKey="JoyLevel_NextStep"
-          label="Joy level (next step)"
-          labelPosition="top"
-          labels="{{ _.startCase(item) }}"
-          overlayMaxHeight={375}
-          placeholder="Select an option"
-          showSelectionIndicator={true}
-          values="{{ item }}"
-        />
         <NumberInput
           id="numberInput1"
           currency="USD"
@@ -637,6 +624,19 @@
           emptyMessage="No options"
           formDataKey="FocusLevelReqd_NextStep"
           label="Focus reqd (next step)"
+          labelPosition="top"
+          labels="{{ _.startCase(item) }}"
+          overlayMaxHeight={375}
+          placeholder="Select an option"
+          showSelectionIndicator={true}
+          values="{{ item }}"
+        />
+        <Select
+          id="select11"
+          data="{{ returnHMLTransformer.value }}"
+          emptyMessage="No options"
+          formDataKey="JoyLevel_NextStep"
+          label="Joy level (next step)"
           labelPosition="top"
           labels="{{ _.startCase(item) }}"
           overlayMaxHeight={375}

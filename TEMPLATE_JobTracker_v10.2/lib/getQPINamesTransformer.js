@@ -1,1 +1,0 @@
-return [...new Set({{ table9.data }}.map(item => item.QPI_Name))];

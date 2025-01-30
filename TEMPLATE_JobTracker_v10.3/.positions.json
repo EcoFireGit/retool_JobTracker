@@ -515,7 +515,7 @@
   },
   "numberInput1": {
     "container": "form4",
-    "row": 2,
+    "row": 1.8,
     "height": 0.2,
     "width": 12
   },
@@ -608,13 +608,13 @@
   },
   "select11": {
     "container": "form4",
-    "row": 1.8,
+    "row": 2.2,
     "height": 0.2,
     "width": 12
   },
   "select12": {
     "container": "form4",
-    "row": 2.2,
+    "row": 2,
     "height": 0.2,
     "width": 12
   },

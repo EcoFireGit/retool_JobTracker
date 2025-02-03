@@ -1221,7 +1221,7 @@
             referenceId="expectedProgress"
             size={100}
             summaryAggregationMode="average"
-            valueOverride="{{ getQBOExpectedPercentProgressTransformer.value[currentSourceRow.QBO_Name] }}"
+            valueOverride="{{ getQBOExpectedPercentProgressTransformer.value[currentSourceRow.QBO_ID][1] }}"
           />
           <Action id="0a578" icon="bold/interface-delete-bin-2" label="Delete">
             <Event
@@ -1588,7 +1588,7 @@
             referenceId="currentProgress"
             size={100}
             summaryAggregationMode="average"
-            valueOverride="{{ getQPICurrentPercentProgressTransformer.value[currentSourceRow.QPI_Name] }}"
+            valueOverride="{{ getQPICurrentPercentProgressTransformer.value[currentSourceRow.QPI_ID][1] }}"
           />
           <Action id="fc896" icon="bold/interface-delete-bin-2" label="Delete">
             <Event

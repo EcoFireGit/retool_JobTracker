@@ -2,6 +2,7 @@
   <GoogleSheetsQuery
     id="readMissionStatementQuery"
     enableTransformer={true}
+    isHidden={false}
     isMultiplayerEdited={false}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
@@ -14,6 +15,7 @@
     actionType="bulkUpdate"
     bulkUpdatePrimaryKey="Mission_ID"
     bulkUpdateRows="{{ table1.changesetArray }}"
+    isHidden={false}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
     runWhenModelUpdates={false}
@@ -34,6 +36,7 @@
   </GoogleSheetsQuery>
   <GoogleSheetsQuery
     id="readQPIsQuery"
+    isHidden={false}
     isMultiplayerEdited={false}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
@@ -47,6 +50,7 @@
     actionType="bulkUpdate"
     bulkUpdatePrimaryKey="QPI_ID"
     bulkUpdateRows="{{  table9.changesetArray }}"
+    isHidden={false}
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     resourceDisplayName="SK29_Gmail"
@@ -72,6 +76,7 @@
     id="addQPIsQuery"
     actionType="append"
     enableTransformer={true}
+    isHidden={false}
     isMultiplayerEdited={false}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
@@ -97,6 +102,7 @@
   />
   <GoogleSheetsQuery
     id="readJobListQuery"
+    isHidden={false}
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     resourceDisplayName="SK29_Gmail"
@@ -113,6 +119,7 @@
     bulkUpdatePrimaryKey="Job_ID"
     bulkUpdateRows="{{ table5.changesetArray }}"
     confirmationMessage=""
+    isHidden={false}
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     resourceDisplayName="SK29_Gmail"
@@ -149,6 +156,7 @@
     filterBy={
       '[{"key":"QPI_ID","value":"{{ table9.selectedRow.QPI_ID }}","operation":"="}]'
     }
+    isHidden={false}
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     requireConfirmation={true}
@@ -177,6 +185,7 @@
     filterBy={
       '[{"key":"Job_ID","value":"{{ table5.selectedRow.Job_ID }}","operation":"="}]'
     }
+    isHidden={false}
     notificationDuration={4.5}
     requireConfirmation={true}
     resourceDisplayName="SK29_Gmail"
@@ -200,6 +209,7 @@
   <GoogleSheetsQuery
     id="addJobQuery"
     actionType="append"
+    isHidden={false}
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     resourceDisplayName="SK29_Gmail"
@@ -227,6 +237,7 @@
   />
   <GoogleSheetsQuery
     id="readJob2QPIsQuery"
+    isHidden={false}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
     sheetName="Job2QPIs"
@@ -239,6 +250,7 @@
     actionType="bulkUpdate"
     bulkUpdatePrimaryKey="Job_QPI_Mapping_ID"
     bulkUpdateRows="{{ table10.changesetArray }}"
+    isHidden={false}
     notificationDuration={4.5}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
@@ -268,6 +280,7 @@
     filterBy={
       '[{"key":"Job_QPI_Mapping_ID","value":"{{ table10.selectedRow.Job_QPI_Mapping_ID }}","operation":"="}]'
     }
+    isHidden={false}
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     requireConfirmation={true}
@@ -292,6 +305,7 @@
   <GoogleSheetsQuery
     id="addJob2QPIsQuery"
     actionType="append"
+    isHidden={false}
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     resourceDisplayName="SK29_Gmail"
@@ -320,6 +334,7 @@
   <GoogleSheetsQuery
     id="listAllGoogleSheetsQuery"
     actionType="listSpreadsheets"
+    isHidden={false}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
     resourceTypeOverride=""
@@ -334,6 +349,7 @@
     actionType="bulkUpdate"
     bulkUpdatePrimaryKey="Job_ID"
     bulkUpdateRows="{{ table7.changesetArray }}"
+    isHidden={false}
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     resourceDisplayName="SK29_Gmail"
@@ -365,6 +381,7 @@
   <GoogleSheetsQuery
     id="readOwnersQuery"
     enableTransformer={true}
+    isHidden={false}
     isMultiplayerEdited={false}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
@@ -377,6 +394,7 @@
     actionType="bulkUpdate"
     bulkUpdatePrimaryKey="Owner_ID"
     bulkUpdateRows="{{ table8.changesetArray }}"
+    isHidden={false}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
     runWhenModelUpdates={false}
@@ -398,6 +416,7 @@
   <GoogleSheetsQuery
     id="addOwnerssQuery"
     actionType="append"
+    isHidden={false}
     isMultiplayerEdited={false}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
@@ -424,6 +443,7 @@
     filterBy={
       '[{"key":"Owner_ID","value":"{{ table8.selectedRow.Owner_ID }}","operation":"="}]'
     }
+    isHidden={false}
     notificationDuration={4.5}
     requireConfirmation={true}
     resourceDisplayName="SK29_Gmail"
@@ -451,6 +471,7 @@
     chatInput="{{ chat2.lastMessage }}"
     customTemperature="0.5"
     defaultModelInitialized={true}
+    isHidden={false}
     isMultiplayerEdited={false}
     model="chatgpt-4o-latest"
     resourceDisplayName="retool_ai"
@@ -461,6 +482,7 @@
   />
   <GoogleSheetsQuery
     id="readQBOsQuery"
+    isHidden={false}
     isMultiplayerEdited={false}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
@@ -474,6 +496,7 @@
     actionType="bulkUpdate"
     bulkUpdatePrimaryKey="QBO_ID"
     bulkUpdateRows="{{  table3.changesetArray }}"
+    isHidden={false}
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     resourceDisplayName="SK29_Gmail"
@@ -502,6 +525,7 @@
     filterBy={
       '[{"key":"QBO_ID","value":"{{ table3.selectedRow.QBO_ID }}","operation":"="}]'
     }
+    isHidden={false}
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     requireConfirmation={true}
@@ -527,6 +551,7 @@
     id="addQBOQuery"
     actionType="append"
     enableTransformer={true}
+    isHidden={false}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
     runWhenModelUpdates={false}
@@ -547,6 +572,7 @@
   </GoogleSheetsQuery>
   <GoogleSheetsQuery
     id="readQPIs2QBOsQuery"
+    isHidden={false}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
     sheetName="QPIs2QBOs"
@@ -561,6 +587,7 @@
   <GoogleSheetsQuery
     id="addQPIsQ2QBOsQuery"
     actionType="append"
+    isHidden={false}
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     resourceDisplayName="SK29_Gmail"
@@ -587,6 +614,7 @@
     actionType="bulkUpdate"
     bulkUpdatePrimaryKey="QPI_QBO_Mapping_ID"
     bulkUpdateRows="{{ table6.changesetArray }}"
+    isHidden={false}
     notificationDuration={4.5}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
@@ -616,6 +644,7 @@
     filterBy={
       '[{"key":"QPI_QBO_Mapping_ID","value":"{{ table6.selectedRow.QPI_QBO_Mapping_ID }}","operation":"="}]'
     }
+    isHidden={false}
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     requireConfirmation={true}
@@ -644,6 +673,7 @@
     filterBy={
       '[{"key":"QBO_Name","value":"{{ form9.data.QBO_Name }}","operation":"="}]'
     }
+    isHidden={false}
     isMultiplayerEdited={false}
     resourceDisplayName="SK29_Gmail"
     resourceName="1b213b36-0ff0-4716-8db0-ed0204d65e0c"
@@ -686,6 +716,7 @@
     id="duplicateJobQuery"
     actionType="append"
     confirmationMessage={'Duplicate Job "{{ table5.selectedRow.Job_Title }}"?'}
+    isHidden={false}
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     requireConfirmation={true}
@@ -739,6 +770,7 @@
     confirmationMessage={
       'Duplicate Job 2 PI mapping "{{ table5.selectedRow.Job_Title }}"?'
     }
+    isHidden={false}
     isMultiplayerEdited={false}
     notificationDuration={4.5}
     requireConfirmation={true}

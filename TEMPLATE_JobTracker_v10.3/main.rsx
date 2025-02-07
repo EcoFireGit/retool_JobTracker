@@ -691,7 +691,7 @@
           formDataKey="QBO_Name"
           label="QBO name"
           labelPosition="top"
-          labels="{{ _.startCase(item) }}"
+          labels="{{item }}"
           overlayMaxHeight={375}
           placeholder="Select an option"
           required={true}

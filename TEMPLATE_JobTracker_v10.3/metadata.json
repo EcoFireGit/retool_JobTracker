@@ -5,7 +5,7 @@
   "appTemplate": {
     "preloadedAppJavaScript": "window.parseStringToNumber = function(str) {\n  // Remove currency symbols, commas, and spaces\n  let cleanedStr = str.replace(/[$£€¥,\\s]/g, '');\n  \n  // Check if it's a percentage\n  if (cleanedStr.includes('%')) {\n    cleanedStr = cleanedStr.replace('%', '');\n    return parseFloat(cleanedStr) / 100;\n  }\n  \n  // Parse the cleaned string\n  return parseFloat(cleanedStr);\n};\n\nwindow.createObjectFromArrays = function(keys, values) {\n  return Object.fromEntries(keys.map((key, index) => [key, values[index]]));\n};",
     "isFetching": true,
-    "version": "3.147.0",
+    "version": "3.151.0",
     "experimentalDataTabEnabled": true
   }
 }
